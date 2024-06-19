@@ -53,9 +53,8 @@ jobs:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
           REMOTE_USER: ${{ secrets.REMOTE_USER }}
+          SOURCE: "."
           TARGET: ${{ secrets.REMOTE_TARGET }}
-        with:
-          args: "--delete" # Add any additional rsync arguments here
 
       - name: Run migrations
         run: ssh ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} "cd ${{ secrets.REMOTE_TARGET }} && php artisan migrate --force"
